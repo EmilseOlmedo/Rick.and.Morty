@@ -1,14 +1,23 @@
+/*style */
 import './App.css';
+
+/*components to render*/
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav.jsx';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import {Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import About from './components/about/About.jsx';
 import Detail from './components/detail/Detail.jsx';
 import Error from './components/error/Error.jsx';
 import Form from './components/form/Form'
+import Favorites from './components/favorites/Favorites.jsx';
 
+/*hooks*/
+import { useState, useEffect } from 'react';
+import {Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+
+/*dependencies*/
+import axios from 'axios';
+
+/*credentials*/
 const APIKEY = 'pi-emilseolmedo';
 const USER_EMAIL = 'hola@gmail.com'
 const USER_PASSWORD = 'asd123'
@@ -62,6 +71,7 @@ function App() {
       <div className='App'>
          {pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}         
          <Routes>
+            <Route path='/favorites' element= {<Favorites/>}/>
             <Route path= "/home" element={<Cards characters={characters} onClose={onClose}/>}/>
             <Route path= "/about" element={<About/>}/>
             <Route path= "/detail/:id" element={<Detail/>}/> 

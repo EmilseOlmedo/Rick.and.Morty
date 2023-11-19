@@ -11,7 +11,7 @@ const store = createStore(
 
 export default store;
 
-//composeEnhancer: permite conectar mi proyecto con la extensión (npmbre por convención)
+//composeEnhancer: permite conectar mi proyecto con la extensión (nombre por convención)
 //thunkMiddleware: es un traductor. me permite comunicar con el servidor
 //redux-thunk: nos permite poder hacer un llamado a una APi con un action
 //const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
