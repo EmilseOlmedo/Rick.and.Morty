@@ -1,23 +1,45 @@
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../card/Card";
+import Cards from '../cards/Cards'
+import { filterCards, orderCards } from "../../redux/action";
+import { useState } from 'react';
 
 const Favorites = ()=> {
-    const {myFavorites} = useSelector ((state) => state)
+    const {myFavorites} = useSelector ((state) => state);
+    const dispatch = useDispatch();
+    // const [aux, setAux] = useState (false);
+    
+    const handleOrder = (event) => {
+      dispatch(orderCards(event.target.value));
+      // setAux(!aux);
+    }
+
+    const handleFilter = (event) => {
+      dispatch(filterCards(event.target.value))
+    }
+
+    /* PUEDO UNIR LOS HANDLE
+    const handleChange = (event) => {
+      if(event.target.name === 'filter' {
+        dispatch (filterCards(event.target.value));
+      }else{
+        dispatch(orderCards(event.target.value));
+      }
+        */
+
     return (
-      //en vez de hacer el map puedo importar Cards y pasar entre <di> solamente:
-      // <Cards characters={myFavorites}/>
-        <div>
-                {myFavorites?.map((favorite) => {
-                  return (
-                    <Card
-                        key={favorite.id}
-                        id={favorite.id}
-                        name={favorite.name}
-                        image={favorite.image}
-                    />
-                  )
-                })}
-        </div>
+      <div>        
+        <select name='order' onChange={handleOrder}>
+          <option value='A'>Ascendente</option>
+          <option value='D'>Descendente</option>    
+        </select> 
+        <select name= 'filter' onChange={handleFilter}>
+          <option value='Male'>Male</option>
+          <option value='Female'>Female</option>
+          <option value='Genderless'>Genderless</option>
+          <option value='unknown'>Unknown</option>      
+        </select>                
+        <Cards characters={myFavorites}/>      
+      </div>
     )
 }
 

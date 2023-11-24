@@ -43,7 +43,7 @@ function App() {
          }
       });
    }
-};
+   };
 
    function onClose (id) {
       setCharacters(characters.filter((character) => character.id !== Number(id)))
