@@ -28,13 +28,12 @@ function App() {
    const [access, setAccess]= useState(false);
    const navigate = useNavigate(); //fn{...}
 
-
   
    function onSearch(id) {
       if (characters.some((character) => character.id === Number(id))) {
          window.alert("El personaje ya ha sido agregado");
        } else {
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
+      axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
