@@ -19,21 +19,22 @@ import axios from 'axios';
 
 /*credentials*/
 const APIKEY = 'pi-emilseolmedo';
-const USER_EMAIL = 'hola@gmail.com'
-const USER_PASSWORD = 'asd123'
+// const USER_EMAIL = 'hola@gmail.com'
+// const USER_PASSWORD = 'asd123'
 
 function App() {
    const [characters, setCharacters]=useState ([]);
    const {pathname} = useLocation();
    const [access, setAccess]= useState(false);
    const navigate = useNavigate(); //fn{...}
+   const URL = 'http://localhost:3001/rickandmorty/';
 
   
    function onSearch(id) {
       if (characters.some((character) => character.id === Number(id))) {
          window.alert("El personaje ya ha sido agregado");
        } else {
-      axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
+      axios.get(`${URL}character/${id}`)
       .then(({ data }) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
@@ -47,15 +48,25 @@ function App() {
    function onClose (id) {
       setCharacters(characters.filter((character) => character.id !== Number(id)))
    }
+   //----------------REEMPLAZO LOGIN--------------------
+   // const login = (userData) =>{
+   //    if (userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
+   //       setAccess(true);
+   //       navigate ('/home'); //le digo a donde quiero que lo lleve
+   //    } else {
+   //       window.alert('Email o password incorrecto');
+   //    }
+   // };
 
    const login = (userData) =>{
-      if (userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
-         setAccess(true);
-         navigate ('/home'); //le digo a donde quiero que lo lleve
-      } else {
-         window.alert('Email o password incorrecto');
-      }
-   };
+      const { email, password } = userData;
+      // const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios.get(`${URL}login?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      });
+   }
 
    function logout() {
     setAccess(false);
