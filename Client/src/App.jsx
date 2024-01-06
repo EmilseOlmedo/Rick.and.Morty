@@ -29,21 +29,35 @@ function App() {
    const navigate = useNavigate(); //fn{...}
    
 
-  
-   function onSearch(id) {
+     async function onSearch (id) {
+      try {
       if (characters.some((character) => character.id === Number(id))) {
          window.alert("El personaje ya ha sido agregado");
-       } else {
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
+      } else {
+         const {data} = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+      
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            window.alert('¡No hay personajes con este ID!');
+            }
+         }           
+         } catch (error){
+            alert('¡No hay personajes con este ID!');
          }
-      });
-   }
-   };
+      };
+   // function onSearch (id) {
+   //    if (characters.some((character) => character.id === Number(id))) {
+   //       window.alert("El personaje ya ha sido agregado");
+   //     } else {
+   //    axios(`http://localhost:3001/rickandmorty/character/${id}`)
+   //    .then(({ data }) => {
+   //       if (data.name) {
+   //          setCharacters((oldChars) => [...oldChars, data]);
+   //       } else {
+   //          window.alert('¡No hay personajes con este ID!');
+   //       }
+   //    });
+   // }
+   // };
 
    function onClose (id) {
       setCharacters(characters.filter((character) => character.id !== Number(id)))
@@ -58,16 +72,23 @@ function App() {
    //    }
    // };
 
-   const login = (userData) =>{
-      const { email, password } = userData;
+   const login = async (userData) =>{
+      try {
+         const { email, password } = userData;
       // const URL = 'http://localhost:3001/rickandmorty/';
       // axios.get(`${URL}login?email=${email}&password=${password}`).then(({ data }) => {
          const URL = "http://localhost:3001/rickandmorty/login/";
-         axios.get(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const {data} = await axios.get(URL + `?email=${email}&password=${password}`)
+
          setAccess(data);
          access && navigate('/home');
-      });
-   }
+
+      } catch (error) {
+         throw Error(error.message);
+         }
+      };
+
+      
    // function login(userData) {
    //    const { email, password } = userData;
    //    const URL = "http://localhost:3001/rickandmorty/login/";

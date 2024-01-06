@@ -2,12 +2,12 @@ const axios = require ('axios');
 const APIKEY = 'pi-emilseolmedo';
 const URL= 'https://rym2.up.railway.app/api/character/';
 
-const getCharById = (req, res)=>{
+const getCharById = async (req, res)=>{
+    try {
     // const id = req.params.id---->o con D
     const {id} = req.params;
+    const {data} = await axios(`${URL}${id}?key=${APIKEY}`)
 
-    axios(`${URL}${id}?key=${APIKEY}`)
-    .then(({data})=>{
         if(data.id){ //si encuentro un personaje retorno lo que quiero de data
             const character = {
                 id,
@@ -21,11 +21,9 @@ const getCharById = (req, res)=>{
             return res.status(200).json(character);
         }
         return res.status(404).send('Noy found') //si todo sale bien pero no se encuentra al personaje
-    })
-    .catch((error)=>{
+    } catch(error){
         return res.status(500).send(error.message); //send cuando ampliamos texto plano, sino json
-    })
-
+    }
 };
 
 module.exports = {
