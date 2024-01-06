@@ -12,7 +12,7 @@ const router = express.Router();
 
 //CREO MIS RUTAS
 router.get('/character/:id', getCharById); //en vez de crear una cb directamente llamo al controller
-router.get('login', login);
+router.get('/login', login);
 router.post('/fav', postFav);
 router.delete('/fav/:id', deleteFav);
 

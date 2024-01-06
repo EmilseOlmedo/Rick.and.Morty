@@ -1,7 +1,7 @@
 const users = require ('../utils/users')
 
 const login = (req, res)=>{
-    const {email, password} = req.query //debería venir la info del query (en la realidad las contraseñas deberían venir por body por ser dato sensible)
+    const {email, password} = req.query; //debería venir la info del query (en la realidad las contraseñas deberían venir por body por ser dato sensible)
     const userFound = users.find((user)=> user.email === email && user.password === password);
 
     if (userFound) return res.status(200).json({'access':true}) //la prop del objeto está con " " porque está en json
