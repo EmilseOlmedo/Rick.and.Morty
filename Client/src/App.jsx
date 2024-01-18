@@ -59,9 +59,15 @@ function App() {
    // }
    // };
 
-   function onClose (id) {
-      setCharacters(characters.filter((character) => character.id !== Number(id)))
+   // function onClose (id) {
+   //    setCharacters(characters.filter((character) => character.id !== Number(id)))
+   // }
+
+   function onClose(id) {
+      const newCharacters = characters.filter(char => char.id !== id);
+      setCharacters(newCharacters)
    }
+   
    //----------------REEMPLAZO LOGIN--------------------
    // const login = (userData) =>{
    //    if (userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
@@ -109,7 +115,7 @@ function App() {
    }, [access]);
 
    return (
-      <div className='App'>
+      <div className='App' >
          {pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}         
          <Routes>
             <Route path='/favorites' element= {<Favorites/>}/>

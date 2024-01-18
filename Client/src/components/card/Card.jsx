@@ -1,3 +1,6 @@
+/*style*/
+import style from './Card.module.css';
+
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -31,24 +34,23 @@ const handleFavorite = () => {
 
 
    return (
-      <div>
+      <div className={style.container}>
          {
             isFav ? (
-               <button onClick={handleFavorite}>❤️</button>
+               <button className={style.favButton} onClick={handleFavorite}>❤️</button>
             ) : (
-               <button onClick={handleFavorite}>🤍</button>
+               <button className={style.favButton2} onClick={handleFavorite}>🤍</button>
             )
          }
-            {pathname !== '/favorites'? <button onClick={()=>onClose(id)}>X</button> : ''}  
+            {pathname !== '/favorites'? <button className={style.closeButton} onClick={()=>onClose(id)}>X</button> : ''}  
        
-             <Link to={`/detail/${id}`}>
-                <h2>{name}</h2>
-            </Link> 
-         <h2>{status}</h2>
-         <h2>{species}</h2>
-         <h2>{gender}</h2>
-         <h2>{origin}</h2>
-         <img src={image} alt={name} /> 
+             <Link className={style.text} to={`/detail/${id}`} >
+                <h2 className={style.text}>{name}</h2>
+            </Link>       
+         <div>            
+            <img src={image} alt={name} />           
+         </div>
+          
       </div>
    );
 }

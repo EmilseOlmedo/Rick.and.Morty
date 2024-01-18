@@ -13,7 +13,7 @@ export const addFav = (character) => {
             const {data} = await axios.post(endpoint, character)
             
             return dispatch({
-                type: 'ADD_FAV',
+                type: ADD_FAV,
                 payload: data,
             });
         }catch (error) {
@@ -21,6 +21,7 @@ export const addFav = (character) => {
         }      
        };
     };
+
 
  //----REEMPLAZO addFav por código Readme---------
 // export const removeFav = (id) => {
@@ -33,14 +34,30 @@ export const removeFav = (id) => {
         const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
         const {data} = await axios.delete(endpoint)
         return dispatch({
-            type: 'REMOVE_FAV',
+            type: REMOVE_FAV,
             payload: data,
         });
         } catch  (error) {
-        throw Error (error.message);
+            throw Error (error.message);
         }  
     };
  };
+ //*********************************************************** */
+ 
+//  export const removeFav = (id) => {
+//      const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
+//      return async (dispatch) => {
+//          try {
+//              const { data } = await axios.delete(endpoint)
+//              return dispatch({
+//                  type: REMOVE_FAV,
+//                  payload: data,
+//              });
+//          } catch (error) {
+//              window.alert("Error removing the character from favorites")
+//          }
+//      };
+//  };
 
 export const filterCards = (gender) => {
     return {type: FILTER, payload: gender}
@@ -49,3 +66,35 @@ export const filterCards = (gender) => {
 export const orderCards = (order) => {
     return {type: ORDER, payload: order}
 }
+
+//****************************** */
+// export const addFav = (character) => {
+//     const endpoint = 'http://localhost:3001/rickandmorty/fav';
+//      return async (dispatch) => {
+//          try {
+//              const { data } = await axios.post(endpoint, character)
+//              return dispatch({
+//                  type: ADD_FAV,
+//                  payload: data,
+//              });
+//          } catch (error) {
+//              window.alert("Error adding the character to favorites")
+//          }
+//      };
+//  };
+ //*********************************************************** */
+ 
+//  export const removeFav = (id) => {
+//      const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
+//      return async (dispatch) => {
+//          try {
+//              const { data } = await axios.delete(endpoint)
+//              return dispatch({
+//                  type: REMOVE_FAV,
+//                  payload: data,
+//              });
+//          } catch (error) {
+//              window.alert("Error removing the character from favorites")
+//          }
+//      };
+//  };

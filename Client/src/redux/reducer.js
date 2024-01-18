@@ -14,6 +14,7 @@ const reducer = (state = initialState, action) => {
         //         myFavorites: [...state.allCharacters, action.payload],      //hacemos dos copias para poder modificar una y la otra queda como backup
         //         allCharacters: [...state.allCharacters, action.payload]
         //     }
+        
         case ADD_FAV:
             return { ...state,
                  myFavorites: action.payload, 
@@ -34,6 +35,7 @@ const reducer = (state = initialState, action) => {
                 ...state, 
                 myFavorites: action.payload,
                 allFavorites: action.payload };
+
 
         case FILTER:
             const filterByGender = [...state.allCharacters].filter((favorite) => {

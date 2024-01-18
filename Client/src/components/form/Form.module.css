@@ -1,0 +1,48 @@
+.container {
+    width: 340px;
+    padding: 2%;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(87, 110, 110, 0.548);
+    border-radius: 20px;
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.6);
+  }
+  
+  
+.submit {
+    margin-top: 5%;
+    width: 60%;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 1em;
+    color:rgb(241, 247, 247);
+    background-color:rgb(2, 67, 67);
+    border: none;
+ }
+  
+  .submit:hover {
+    color: #8a6a12;
+    background-color: #f0dc27;
+    cursor: pointer;
+  }
+
+.input {
+    margin-top: 1%;
+    margin-bottom: 3%;
+    width: 100%;
+    padding: 2%;
+    background-color: rgb(253, 254, 254);
+    border-radius: 5px;
+    border: none;
+  }
+
+.error {
+    margin: 5px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color:darkred;  
+  }

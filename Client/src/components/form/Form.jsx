@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import validation from './validation';
+import style from './Form.module.css'
 
 const Form = ({login}) =>{
     const [userData, setUserData] = useState({
@@ -28,9 +29,9 @@ const Form = ({login}) =>{
 
 
     return (
-        <form onSubmit = {handleSubmit}>
-            <label>Email </label>
-            <input
+        <form onSubmit = {handleSubmit} className={style.container}>
+            <label>EMAIL </label>
+            <input className={style.input}
                 type = 'email' 
                 name = 'email' 
                 value={userData.email} 
@@ -38,20 +39,18 @@ const Form = ({login}) =>{
             />
             <p>{errors.email}</p>
 
-            <hr style={{borderStyle: 'none'}}/>
-
-            <label>Password </label>
-            <input 
+            
+            <label>PASSWORD </label>
+            <input className={style.input}
                 type = 'password' 
                 name = 'password'
                 value={userData.password} 
                 onChange={handleChange}
             />
-            <p>{errors.password}</p>
+            <p className={style.error}>{errors.password}</p>
 
-            <hr style={{borderStyle: 'none'}}/>     
-
-            <button type = 'submit'>Submit</button>
+             
+            <button type = 'submit' className = {style.submit}>SUBMIT</button>
         </form>
     )
 }
