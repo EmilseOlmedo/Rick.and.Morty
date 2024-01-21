@@ -17,14 +17,6 @@ const Favorites = ()=> {
       dispatch(filterCards(event.target.value))
     }
 
-    /* PUEDO UNIR LOS HANDLE
-    const handleChange = (event) => {
-      if(event.target.name === 'filter' {
-        dispatch (filterCards(event.target.value));
-      }else{
-        dispatch(orderCards(event.target.value));
-      }
-        */
 
     return (
       <div>        
@@ -45,6 +37,15 @@ const Favorites = ()=> {
 
 export default Favorites;
 
+
+    /* PUEDO UNIR LOS HANDLE
+    const handleChange = (event) => {
+      if(event.target.name === 'filter' {
+        dispatch (filterCards(event.target.value));
+      }else{
+        dispatch(orderCards(event.target.value));
+      }
+        */
 /*{props.onClose ? (
           <button
             className={style.borrarBtn}
